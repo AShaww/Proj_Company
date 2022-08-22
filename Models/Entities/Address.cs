@@ -8,16 +8,15 @@ namespace Models.Entities
 {
     public class Address
     {
-        public Address(int addressId, string addressName, int personId)
+        public Address(int addressId, string addressName)
         {
             AddressId = addressId;
             AddressName = addressName;
-            PersonId = personId;
         }
 
         public int AddressId { get; set; }
+        public int PersonId { get; set; }
         public string AddressName { get; set; }
-        public int PersonId { get; set; }   
-        public ICollection<PersonAddress> PersonAddresses { get; set; }
+        public Person Person { get; set; }
     }
 }

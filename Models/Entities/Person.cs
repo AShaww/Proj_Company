@@ -8,8 +8,15 @@ namespace Models.Entities
 {
     public class Person
     {
+        public Person(int id, int addressId)
+        {
+            PersonId = id;
+            AddressId = addressId;
+        }
+
         public int PersonId { get; set; }
-        public string FirstName { get; set; }
+        
+      /*  public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Fullname
         {
@@ -17,9 +24,8 @@ namespace Models.Entities
             {
                 return FirstName + LastName;
             }
-        }
-        public DateOnly DateOfBirth { get; set; }
-        public ICollection<PersonCompany> PersonCompanys { get; set;}
-        public ICollection<PersonAddress> PersonAddresses { get; set; }
+        }*/
+        public int AddressId { get; set; }
+        public Address? Address { get; set; }
     }
 }
