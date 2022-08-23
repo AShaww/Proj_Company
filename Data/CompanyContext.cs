@@ -17,12 +17,14 @@ namespace Data
         }
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.ApplyConfiguration(new PersonConfiguration());
-            builder.ApplyConfiguration(new AddressConfiguration());
+            builder.ApplyConfiguration(new ContactDetailsConfiguration());
+            builder.ApplyConfiguration(new EmployeeConfiguration());
+            builder.ApplyConfiguration(new JobRoleConfiguration());
 
         }
-        public DbSet<Person> PersonList { get; set; }
-        public DbSet<Address> AddressList { get; set; }
-
+        public DbSet<Employee> Employee { get; set; }
+        public DbSet<ContactDetails> ContactDetails { get; set; }
+        public DbSet<JobRole> JobRoles { get; set; }
+           
     }
 }

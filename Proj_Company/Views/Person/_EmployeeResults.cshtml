@@ -1,0 +1,28 @@
+﻿@model Models.ViewModels.EmployeeResults
+
+<div id="employeeResults">
+    <table class="table table-striped table-hover" id="employeeResults">
+        <thead>
+            <tr>
+                <th>Full Name</th>
+                <th>Address</th>
+                <th>Mobile Number</th>
+                <th>Job Title</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var obj in Model.Employee)
+            {
+                <tr>
+                    <td>@obj.Fullname</td>
+                    <td>@obj.ContactDetails.Address</td>
+                    <td>@obj.ContactDetails.MobileNumber</td>
+                    <td>@obj.JobRole.JobTitle</td>
+
+                    <td><a asp-action="Edit" asp-route-id="@obj.EmployeeId">Edit</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

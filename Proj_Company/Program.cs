@@ -1,7 +1,26 @@
+using FluentValidation.AspNetCore;
+using Microsoft.EntityFrameworkCore;
+using Services.EntityValidators;
+using Services.Implementations;
+using Services.Interfaces;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContext<Data.CompanyContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+});
+
+builder.Services.AddControllersWithViews().AddFluentValidation(options =>
+{
+    options.RegisterValidatorsFromAssemblyContaining<EmployeeValidator>();
+    options.DisableDataAnnotationsValidation = true;
+});
+
+builder.Services.AddScoped<IEmployeeService, EmployeeService>();
 
 var app = builder.Build();
 
