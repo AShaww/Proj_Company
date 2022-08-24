@@ -14,7 +14,7 @@
             LastName = lastName;
         }*/
         public int EmployeeId { get; set; }
-        public int ContactDetailsId { get; set; }
+        public int EmployeeDetailsId { get; set; }
 
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -25,7 +25,8 @@
                 return FirstName + LastName;
             }
         }
-        public ContactDetails ContactDetails { get; set; }
+        public int JobRoleId { get; set; }
+        public EmployeeDetails ContactDetails { get; set; }
         public JobRole? JobRole { get; set; }
     }
 }

@@ -19,6 +19,6 @@ namespace Models.Entities
         }
         public int JobRoleId { get; set; }
         public string JobTitle { get; set; }
-        public ICollection<Employee>? Employee { get; set; }
+        public ICollection<Employee>? Employees { get; set; }
     }
 }

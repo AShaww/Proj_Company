@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace Data.EntityConfigurations
 {
-    public class ContactDetailsConfiguration : IEntityTypeConfiguration<ContactDetails>
+    public class ContactDetailsConfiguration : IEntityTypeConfiguration<EmployeeDetails>
     {
-        public void Configure(EntityTypeBuilder<ContactDetails> builder)
+        public void Configure(EntityTypeBuilder<EmployeeDetails> builder)
         {
             builder.HasKey(x => x.EmployeeDetailsId);
             builder.HasOne(x => x.Employee).WithOne(x => x.ContactDetails);
@@ -20,7 +20,7 @@ namespace Data.EntityConfigurations
             
         }
 
-        public void Seed(EntityTypeBuilder<ContactDetails> builder)
+        public void Seed(EntityTypeBuilder<EmployeeDetails> builder)
         {
            /* new Address(1, "31 something"); */
         }

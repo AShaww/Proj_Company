@@ -4,7 +4,7 @@ using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Models.Entities;
-using Models.ViewModels;
+using Models.ViewModels.EmployeeViewModels;
 using Services.Interfaces;
 using System.Linq;
 
@@ -31,18 +31,24 @@ namespace Services.Implementations
 
             //add person 
             await _db.ContactDetails.AddAsync(person.ContactDetails);
-            await _db.JobRoles.AddAsync(person.JobRole);
+
+     
+
 
             var highestIndex = await _db.ContactDetails.OrderByDescending(a => a.EmployeeDetailsId).SingleOrDefaultAsync();
+
             if (highestIndex == null)
             {
-                person.ContactDetailsId = 1;
-                    }
+                person.EmployeeDetailsId = 1;
+
+            }
             else
             {
-                person.ContactDetailsId = highestIndex.EmployeeDetailsId;
+                person.EmployeeDetailsId = highestIndex.EmployeeDetailsId;
             }
-            await _db.Employee.AddAsync(person);
+
+
+            await _db.Employees.AddAsync(person);
             await _db.SaveChangesAsync();
             return new OkResult();
         }
@@ -53,6 +59,7 @@ namespace Services.Implementations
             {
                 viewModel = new CreateEmployeeViewModel { Employee = new Employee() };
             }
+            viewModel.JobRoles = await _db.JobRoles.ToListAsync();
             return viewModel;
         }
 
@@ -68,7 +75,7 @@ namespace Services.Implementations
         public async Task<EmployeeResults> GetInitialEmployeeResults()
         {
 
-            var recordCount = _db.Employee.Count();
+            var recordCount = _db.Employees.Count();
 
             EmployeeResults results = new EmployeeResults
             {
@@ -78,9 +85,9 @@ namespace Services.Implementations
         }
         private async Task<List<Employee>> SortEmployeeResults()
         {
+            var Employees = _db.Employees.Include(a => a.ContactDetails).ToList();
 
-            var Employees = _db.Employee.Include(a => a.ContactDetails).ToList();
-
+            Employees = _db.Employees.Include(a => a.JobRole).ToList();
             return Employees;
         }
         public async Task<EmployeeViewModel> BuildInitialEmployeeViewModel()

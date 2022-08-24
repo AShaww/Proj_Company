@@ -22,16 +22,41 @@ namespace Data.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("Models.Entities.ContactDetails", b =>
+            modelBuilder.Entity("Models.Entities.Employee", b =>
+                {
+                    b.Property<int>("EmployeeId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EmployeeId"), 1L, 1);
+
+                    b.Property<int>("EmployeeDetailsId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("JobRoleId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("EmployeeId");
+
+                    b.HasIndex("JobRoleId");
+
+                    b.ToTable("Employees");
+                });
+
+            modelBuilder.Entity("Models.Entities.EmployeeDetails", b =>
                 {
                     b.Property<int>("EmployeeDetailsId")
                         .HasColumnType("int");
 
                     b.Property<string>("Address")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Gender")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -44,35 +69,6 @@ namespace Data.Migrations
                     b.HasKey("EmployeeDetailsId");
 
                     b.ToTable("ContactDetails");
-                });
-
-            modelBuilder.Entity("Models.Entities.Employee", b =>
-                {
-                    b.Property<int>("EmployeeId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EmployeeId"), 1L, 1);
-
-                    b.Property<int>("ContactDetailsId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("JobRoleId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("EmployeeId");
-
-                    b.HasIndex("JobRoleId");
-
-                    b.ToTable("Employee");
                 });
 
             modelBuilder.Entity("Models.Entities.JobRole", b =>
@@ -139,24 +135,26 @@ namespace Data.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Models.Entities.ContactDetails", b =>
+            modelBuilder.Entity("Models.Entities.Employee", b =>
+                {
+                    b.HasOne("Models.Entities.JobRole", "JobRole")
+                        .WithMany("Employees")
+                        .HasForeignKey("JobRoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("JobRole");
+                });
+
+            modelBuilder.Entity("Models.Entities.EmployeeDetails", b =>
                 {
                     b.HasOne("Models.Entities.Employee", "Employee")
                         .WithOne("ContactDetails")
-                        .HasForeignKey("Models.Entities.ContactDetails", "EmployeeDetailsId")
+                        .HasForeignKey("Models.Entities.EmployeeDetails", "EmployeeDetailsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Employee");
-                });
-
-            modelBuilder.Entity("Models.Entities.Employee", b =>
-                {
-                    b.HasOne("Models.Entities.JobRole", "JobRole")
-                        .WithMany("Employee")
-                        .HasForeignKey("JobRoleId");
-
-                    b.Navigation("JobRole");
                 });
 
             modelBuilder.Entity("Models.Entities.Employee", b =>
@@ -167,7 +165,7 @@ namespace Data.Migrations
 
             modelBuilder.Entity("Models.Entities.JobRole", b =>
                 {
-                    b.Navigation("Employee");
+                    b.Navigation("Employees");
                 });
 #pragma warning restore 612, 618
         }

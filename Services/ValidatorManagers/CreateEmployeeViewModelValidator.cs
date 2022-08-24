@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using Models.ViewModels;
+using Models.ViewModels.EmployeeViewModels;
 using Services.EntityValidators;
 using System;
 using System.Collections.Generic;

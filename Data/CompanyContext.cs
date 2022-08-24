@@ -22,8 +22,8 @@ namespace Data
             builder.ApplyConfiguration(new JobRoleConfiguration());
 
         }
-        public DbSet<Employee> Employee { get; set; }
-        public DbSet<ContactDetails> ContactDetails { get; set; }
+        public DbSet<Employee> Employees { get; set; }
+        public DbSet<EmployeeDetails> ContactDetails { get; set; }
         public DbSet<JobRole> JobRoles { get; set; }
            
     }

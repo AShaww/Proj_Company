@@ -1,8 +1,8 @@
 ﻿namespace Models.Entities
 {
-    public class ContactDetails
+    public class EmployeeDetails
     {
-        public ContactDetails() { }
+        public EmployeeDetails() { }
 
         /*  public Address(int addressId, string addressName)
           {
@@ -14,7 +14,6 @@
         public int MobileNumber { get; set; }
         public int? HomePhoneNumber { get; set; }
         public string Address { get; set; }
-        public string Gender { get; set; }
         public Employee Employee { get; set; }
     }
 }

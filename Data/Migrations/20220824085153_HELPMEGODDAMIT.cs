@@ -4,7 +4,7 @@
 
 namespace Data.Migrations
 {
-    public partial class test : Migration
+    public partial class HELPMEGODDAMIT : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -22,24 +22,25 @@ namespace Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Employee",
+                name: "Employees",
                 columns: table => new
                 {
                     EmployeeId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ContactDetailsId = table.Column<int>(type: "int", nullable: false),
+                    EmployeeDetailsId = table.Column<int>(type: "int", nullable: false),
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    JobRoleId = table.Column<int>(type: "int", nullable: true)
+                    JobRoleId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Employee", x => x.EmployeeId);
+                    table.PrimaryKey("PK_Employees", x => x.EmployeeId);
                     table.ForeignKey(
-                        name: "FK_Employee_JobRoles_JobRoleId",
+                        name: "FK_Employees_JobRoles_JobRoleId",
                         column: x => x.JobRoleId,
                         principalTable: "JobRoles",
-                        principalColumn: "JobRoleId");
+                        principalColumn: "JobRoleId",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -49,16 +50,15 @@ namespace Data.Migrations
                     EmployeeDetailsId = table.Column<int>(type: "int", nullable: false),
                     MobileNumber = table.Column<int>(type: "int", nullable: false),
                     HomePhoneNumber = table.Column<int>(type: "int", nullable: true),
-                    Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Gender = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Address = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ContactDetails", x => x.EmployeeDetailsId);
                     table.ForeignKey(
-                        name: "FK_ContactDetails_Employee_EmployeeDetailsId",
+                        name: "FK_ContactDetails_Employees_EmployeeDetailsId",
                         column: x => x.EmployeeDetailsId,
-                        principalTable: "Employee",
+                        principalTable: "Employees",
                         principalColumn: "EmployeeId",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -80,8 +80,8 @@ namespace Data.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Employee_JobRoleId",
-                table: "Employee",
+                name: "IX_Employees_JobRoleId",
+                table: "Employees",
                 column: "JobRoleId");
         }
 
@@ -91,7 +91,7 @@ namespace Data.Migrations
                 name: "ContactDetails");
 
             migrationBuilder.DropTable(
-                name: "Employee");
+                name: "Employees");
 
             migrationBuilder.DropTable(
                 name: "JobRoles");

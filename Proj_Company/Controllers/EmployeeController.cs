@@ -6,11 +6,11 @@ using Proj_Company.Extensions;
 using Models.Entities;
 namespace Proj_Company.Controllers
 {
-    public class PersonController : Controller
+    public class EmployeeController : Controller
     {
         private readonly IEmployeeService _employeeService;
 
-        public PersonController(IEmployeeService employeeService)
+        public EmployeeController(IEmployeeService employeeService)
         {
             _employeeService = employeeService;
         }
@@ -28,9 +28,11 @@ namespace Proj_Company.Controllers
             return View(viewModel);
         }
         [HttpPost]
-        public async Task<IActionResult> Create(Employee employee, ContactDetails contactDetails)
+        public async Task<IActionResult> Create(Employee employee, EmployeeDetails contactDetails)
         {
             employee.ContactDetails = contactDetails;
+
+
 
             var viewModel = new CreateEmployeeViewModel
             {
@@ -45,7 +47,7 @@ namespace Proj_Company.Controllers
                 results.AddToModelState(this.ModelState);
                 return View(viewModel);
             }
-
+          
             await _employeeService.AddEmployee(viewModel.Employee);
             return Redirect("Index");
         }

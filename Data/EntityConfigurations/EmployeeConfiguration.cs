@@ -10,10 +10,10 @@ namespace Data.EntityConfigurations
         {
             builder.HasKey(a => a.EmployeeId);
             builder.HasOne(a => a.ContactDetails).WithOne(a => a.Employee)
-                .HasForeignKey<ContactDetails>(a => a.EmployeeDetailsId);
+                .HasForeignKey<EmployeeDetails>(a => a.EmployeeDetailsId);
 
             builder.HasOne(x => x.JobRole)
-                .WithMany(x => x.Employee);
+                .WithMany(x => x.Employees);
 
             Seed(builder);
         }

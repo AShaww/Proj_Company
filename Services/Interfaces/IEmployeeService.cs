@@ -1,7 +1,7 @@
 ﻿using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
 using Models.Entities;
-using Models.ViewModels;
+using Models.ViewModels.EmployeeViewModels;
 
 namespace Services.Interfaces
 {
