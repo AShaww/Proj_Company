@@ -16,10 +16,12 @@ namespace Services.Implementations
         public EmployeeService(CompanyContext db, IValidator<CreateEmployeeViewModel> validator) : base(db)
         {
             _validator = validator;
+
         }
 
         public async Task<ActionResult> AddEmployee(Employee person)
         {
+            #region Commented 
             //add address
 
 
@@ -28,29 +30,24 @@ namespace Services.Implementations
             /* _db.AddressList.Add(person.Address);*/
 
             //look at the identity column for address, add this first with highest id of user.
+            #endregion
+            await _db.EmployeeDetails.AddAsync(person.EmployeeDetail);
 
-            //add person 
-            await _db.ContactDetails.AddAsync(person.ContactDetails);
-
-     
-
-
-            var highestIndex = await _db.ContactDetails.OrderByDescending(a => a.EmployeeDetailsId).SingleOrDefaultAsync();
+            var highestIndex = await _db.EmployeeDetails.OrderByDescending(a => a.EmployeeDetailsId).SingleOrDefaultAsync();
 
             if (highestIndex == null)
             {
                 person.EmployeeDetailsId = 1;
-
             }
             else
             {
                 person.EmployeeDetailsId = highestIndex.EmployeeDetailsId;
             }
 
-
             await _db.Employees.AddAsync(person);
             await _db.SaveChangesAsync();
             return new OkResult();
+
         }
 
         public async Task<CreateEmployeeViewModel> BuildCreateEmployeeViewModel(CreateEmployeeViewModel? viewModel = null)
@@ -85,7 +82,7 @@ namespace Services.Implementations
         }
         private async Task<List<Employee>> SortEmployeeResults()
         {
-            var Employees = _db.Employees.Include(a => a.ContactDetails).ToList();
+            var Employees =  _db.Employees.Include(a => a.EmployeeDetail).ToList();
 
             Employees = _db.Employees.Include(a => a.JobRole).ToList();
             return Employees;

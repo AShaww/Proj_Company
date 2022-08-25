@@ -20,7 +20,7 @@ namespace Data.EntityConfigurations
         public void Seed(EntityTypeBuilder<JobRole> builder)
         {
             builder.HasData(
-                new JobRole { JobRoleId = 1, JobTitle = "CEO" }
+                new JobRole { JobRoleId = 1, JobRoleTitle = "CEO" }
               /*  new JobRole { JobRoleId = 2, JobTitle = "CTO" },
                 new JobRole { JobRoleId = 3, JobTitle = "C3PO" },
                 new JobRole { JobRoleId = 4, JobTitle = "Manager" },

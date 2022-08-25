@@ -22,6 +22,9 @@ builder.Services.AddControllersWithViews().AddFluentValidation(options =>
 
 builder.Services.AddScoped<IEmployeeService, EmployeeService>();
 
+builder.Services.AddScoped<IJobRoleService, JobRoleService>();
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

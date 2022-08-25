@@ -6,13 +6,7 @@
         {
 
         }
-        /*public Person(int id, int addressId, string firstName, string lastName)
-        {
-            PersonId = id;
-            AddressId = addressId;
-            FirstName = firstName;
-            LastName = lastName;
-        }*/
+     
         public int EmployeeId { get; set; }
         public int EmployeeDetailsId { get; set; }
 
@@ -26,7 +20,7 @@
             }
         }
         public int JobRoleId { get; set; }
-        public EmployeeDetails ContactDetails { get; set; }
-        public JobRole? JobRole { get; set; }
+        public EmployeeDetails EmployeeDetail { get; set; }
+        public JobRole JobRole { get; set; }
     }
 }

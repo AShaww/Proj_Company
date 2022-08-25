@@ -14,7 +14,7 @@ namespace Data.EntityConfigurations
         public void Configure(EntityTypeBuilder<EmployeeDetails> builder)
         {
             builder.HasKey(x => x.EmployeeDetailsId);
-            builder.HasOne(x => x.Employee).WithOne(x => x.ContactDetails);
+            builder.HasOne(x => x.Employee).WithOne(x => x.EmployeeDetail);
             Seed(builder);
 
             

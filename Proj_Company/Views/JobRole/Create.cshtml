@@ -1,12 +1,11 @@
-﻿@model Models.ViewModels.EmployeeViewModels.CreateEmployeeViewModel
+﻿@model Models.ViewModels.JobRoleViewModels.CreateJobRoleViewModel
 
 <a asp-action="Index">Back</a>
 
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
-            <partial name="_EmployeeForm" for="@Model" />
+            <partial name="_JobRoleForm" for="@Model" />
         </form>
     </div>
-
 </div>

@@ -4,6 +4,8 @@ using Services.Interfaces;
 using FluentValidation.AspNetCore;
 using Proj_Company.Extensions;
 using Models.Entities;
+using Models.ViewModels.EmployeeViewModels;
+
 namespace Proj_Company.Controllers
 {
     public class EmployeeController : Controller
@@ -28,11 +30,9 @@ namespace Proj_Company.Controllers
             return View(viewModel);
         }
         [HttpPost]
-        public async Task<IActionResult> Create(Employee employee, EmployeeDetails contactDetails)
+        public async Task<IActionResult> Create(Employee employee, EmployeeDetails employeeDetails)
         {
-            employee.ContactDetails = contactDetails;
-
-
+            employee.EmployeeDetail = employeeDetails;
 
             var viewModel = new CreateEmployeeViewModel
             {

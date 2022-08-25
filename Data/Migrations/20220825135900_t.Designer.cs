@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(CompanyContext))]
-    [Migration("20220824085153_HELPMEGODDAMIT")]
-    partial class HELPMEGODDAMIT
+    [Migration("20220825135900_t")]
+    partial class t
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -70,7 +70,7 @@ namespace Data.Migrations
 
                     b.HasKey("EmployeeDetailsId");
 
-                    b.ToTable("ContactDetails");
+                    b.ToTable("EmployeeDetails");
                 });
 
             modelBuilder.Entity("Models.Entities.JobRole", b =>
@@ -81,7 +81,7 @@ namespace Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("JobRoleId"), 1L, 1);
 
-                    b.Property<string>("JobTitle")
+                    b.Property<string>("JobRoleTitle")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -93,47 +93,7 @@ namespace Data.Migrations
                         new
                         {
                             JobRoleId = 1,
-                            JobTitle = "CEO"
-                        },
-                        new
-                        {
-                            JobRoleId = 2,
-                            JobTitle = "CTO"
-                        },
-                        new
-                        {
-                            JobRoleId = 3,
-                            JobTitle = "C3PO"
-                        },
-                        new
-                        {
-                            JobRoleId = 4,
-                            JobTitle = "Manager"
-                        },
-                        new
-                        {
-                            JobRoleId = 5,
-                            JobTitle = "Supervisor"
-                        },
-                        new
-                        {
-                            JobRoleId = 6,
-                            JobTitle = "Contracted"
-                        },
-                        new
-                        {
-                            JobRoleId = 7,
-                            JobTitle = "In House"
-                        },
-                        new
-                        {
-                            JobRoleId = 8,
-                            JobTitle = "Associate"
-                        },
-                        new
-                        {
-                            JobRoleId = 9,
-                            JobTitle = "Nobody"
+                            JobRoleTitle = "CEO"
                         });
                 });
 
@@ -151,7 +111,7 @@ namespace Data.Migrations
             modelBuilder.Entity("Models.Entities.EmployeeDetails", b =>
                 {
                     b.HasOne("Models.Entities.Employee", "Employee")
-                        .WithOne("ContactDetails")
+                        .WithOne("EmployeeDetail")
                         .HasForeignKey("Models.Entities.EmployeeDetails", "EmployeeDetailsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -161,7 +121,7 @@ namespace Data.Migrations
 
             modelBuilder.Entity("Models.Entities.Employee", b =>
                 {
-                    b.Navigation("ContactDetails")
+                    b.Navigation("EmployeeDetail")
                         .IsRequired();
                 });
 

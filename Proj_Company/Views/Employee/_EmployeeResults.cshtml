@@ -1,4 +1,4 @@
-﻿@model EmployeeResults
+﻿@model Models.ViewModels.EmployeeViewModels.EmployeeResults
 
 <div id="employeeResults">
     <table class="table table-striped table-hover" id="employeeResults">
@@ -16,10 +16,9 @@
             {
                 <tr>
                     <td>@obj.Fullname</td>
-                    <td>@obj.ContactDetails.Address</td>
-                    <td>@obj.ContactDetails.MobileNumber</td>
-                    <td>@obj.JobRole.JobTitle</td>
-
+                    <td>@obj.EmployeeDetail.Address</td>
+                    <td>@obj.EmployeeDetail.MobileNumber</td>
+                    <td>@obj.JobRole.JobRoleTitle</td>
                     <td><a asp-action="Edit" asp-route-id="@obj.EmployeeId">Edit</a></td>
                 </tr>
             }

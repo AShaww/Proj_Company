@@ -4,7 +4,7 @@
 
 namespace Data.Migrations
 {
-    public partial class HELPMEGODDAMIT : Migration
+    public partial class t : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -14,7 +14,7 @@ namespace Data.Migrations
                 {
                     JobRoleId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    JobTitle = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    JobRoleTitle = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -44,7 +44,7 @@ namespace Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ContactDetails",
+                name: "EmployeeDetails",
                 columns: table => new
                 {
                     EmployeeDetailsId = table.Column<int>(type: "int", nullable: false),
@@ -54,9 +54,9 @@ namespace Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ContactDetails", x => x.EmployeeDetailsId);
+                    table.PrimaryKey("PK_EmployeeDetails", x => x.EmployeeDetailsId);
                     table.ForeignKey(
-                        name: "FK_ContactDetails_Employees_EmployeeDetailsId",
+                        name: "FK_EmployeeDetails_Employees_EmployeeDetailsId",
                         column: x => x.EmployeeDetailsId,
                         principalTable: "Employees",
                         principalColumn: "EmployeeId",
@@ -65,19 +65,8 @@ namespace Data.Migrations
 
             migrationBuilder.InsertData(
                 table: "JobRoles",
-                columns: new[] { "JobRoleId", "JobTitle" },
-                values: new object[,]
-                {
-                    { 1, "CEO" },
-                    { 2, "CTO" },
-                    { 3, "C3PO" },
-                    { 4, "Manager" },
-                    { 5, "Supervisor" },
-                    { 6, "Contracted" },
-                    { 7, "In House" },
-                    { 8, "Associate" },
-                    { 9, "Nobody" }
-                });
+                columns: new[] { "JobRoleId", "JobRoleTitle" },
+                values: new object[] { 1, "CEO" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Employees_JobRoleId",
@@ -88,7 +77,7 @@ namespace Data.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "ContactDetails");
+                name: "EmployeeDetails");
 
             migrationBuilder.DropTable(
                 name: "Employees");

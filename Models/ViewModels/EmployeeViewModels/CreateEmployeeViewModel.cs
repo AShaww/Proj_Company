@@ -10,7 +10,7 @@ namespace Models.ViewModels.EmployeeViewModels
     public class CreateEmployeeViewModel
     {
         public Employee Employee { get; set; }
-        public EmployeeDetails ContactDetails { get; set; }
+        public EmployeeDetails EmployeeDetails { get; set; }
         public List<JobRole> JobRoles { get; set; }
     }
 }

@@ -1,0 +1,16 @@
+﻿@model Models.ViewModels.JobRoleViewModels.CreateJobRoleViewModel
+
+<input type="hidden" asp-for="@Model.JobRoles.JobRoleId" value="@Model.JobRoles.JobRoleId" />
+<div class="container">
+    <div class="form-group">
+        <label class="control-label">Job Role Title/ Name </label>
+        <input class="form-control" asp-for="@Model.JobRoles.JobRoleTitle" />
+    </div>
+     <div class="card-footer pt-5">
+        <div class="form-group">
+            <input type="submit" value="Save" class="btn btn-primary" />
+        </div>
+    </div>
+</div>
+
+<a asp-controller="JobRole" asp-action="Index">Go Back</a>

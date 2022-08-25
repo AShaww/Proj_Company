@@ -9,7 +9,7 @@ namespace Data.EntityConfigurations
         public void Configure(EntityTypeBuilder<Employee> builder)
         {
             builder.HasKey(a => a.EmployeeId);
-            builder.HasOne(a => a.ContactDetails).WithOne(a => a.Employee)
+            builder.HasOne(a => a.EmployeeDetail).WithOne(a => a.Employee)
                 .HasForeignKey<EmployeeDetails>(a => a.EmployeeDetailsId);
 
             builder.HasOne(x => x.JobRole)
