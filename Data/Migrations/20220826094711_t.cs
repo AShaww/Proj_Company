@@ -4,7 +4,7 @@
 
 namespace Data.Migrations
 {
-    public partial class test : Migration
+    public partial class t : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -48,7 +48,7 @@ namespace Data.Migrations
                 columns: table => new
                 {
                     EmployeeDetailsId = table.Column<int>(type: "int", nullable: false),
-                    MobileNumber = table.Column<int>(type: "int", nullable: false),
+                    MobileNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     HomePhoneNumber = table.Column<int>(type: "int", nullable: true),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },

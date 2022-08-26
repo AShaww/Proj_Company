@@ -10,6 +10,7 @@ namespace Services.ValidatorManagers
         public CreateJobRoleViewModelValidator()
         {
             RuleFor(viewModel => viewModel.JobRoles).SetValidator(new JobRoleValidator());
+
         }
     }
 }

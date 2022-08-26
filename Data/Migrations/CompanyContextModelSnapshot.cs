@@ -63,8 +63,9 @@ namespace Data.Migrations
                     b.Property<int?>("HomePhoneNumber")
                         .HasColumnType("int");
 
-                    b.Property<int>("MobileNumber")
-                        .HasColumnType("int");
+                    b.Property<string>("MobileNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("EmployeeDetailsId");
 

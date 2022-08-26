@@ -32,6 +32,7 @@ namespace Proj_Company.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(Employee employee, EmployeeDetails employeeDetails)
         {
+
             employee.EmployeeDetail = employeeDetails;
 
             var viewModel = new CreateEmployeeViewModel

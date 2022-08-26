@@ -33,7 +33,7 @@ namespace Services.Implementations
             #endregion
             await _db.EmployeeDetails.AddAsync(person.EmployeeDetail);
 
-            var highestIndex = await _db.EmployeeDetails.OrderByDescending(a => a.EmployeeDetailsId).SingleOrDefaultAsync();
+            var highestIndex = await _db.EmployeeDetails.OrderByDescending(a => a.EmployeeDetailsId).FirstOrDefaultAsync();
 
             if (highestIndex == null)
             {

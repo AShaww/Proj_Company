@@ -18,7 +18,6 @@ builder.Services.AddDbContext<Data.CompanyContext>(options =>
 builder.Services.AddValidatorsFromAssemblyContaining<EmployeeValidator>(ServiceLifetime.Transient);
 builder.Services.AddValidatorsFromAssemblyContaining<JobRoleValidator>(ServiceLifetime.Transient);
 
-
 builder.Services.AddScoped<IEmployeeService, EmployeeService>();
 builder.Services.AddScoped<IJobRoleService, JobRoleService>();
 

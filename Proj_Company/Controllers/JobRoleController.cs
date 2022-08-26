@@ -41,6 +41,7 @@ namespace Proj_Company.Controllers
             {
                 return BadRequest(validationResult.Errors.First().ErrorMessage);
             }    */
+
             if (!validationResult.IsValid)
             {
                 viewModel = await _jobRoleService.BuildCreateJobRoleViewModel();

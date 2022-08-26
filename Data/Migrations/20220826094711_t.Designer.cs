@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(CompanyContext))]
-    [Migration("20220825203453_test")]
-    partial class test
+    [Migration("20220826094711_t")]
+    partial class t
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -65,8 +65,9 @@ namespace Data.Migrations
                     b.Property<int?>("HomePhoneNumber")
                         .HasColumnType("int");
 
-                    b.Property<int>("MobileNumber")
-                        .HasColumnType("int");
+                    b.Property<string>("MobileNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("EmployeeDetailsId");
 
