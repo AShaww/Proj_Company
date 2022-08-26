@@ -6,27 +6,30 @@
     <div class="form-group">
         <label class="control-label">First Name</label>
         <input class="form-control" asp-for="@Model.Employee.FirstName" />
-        <span class="test-danger"></span>
+        <span asp-validation-for="@Model.Employee.FirstName" class="text-danger"></span>
     </div>
     <div class="form-group">
         <label class="control-label">Last Name</label>
         <input class="form-control" asp-for="@Model.Employee.LastName" />
-        <span class="test-danger"></span>
+        <span asp-validation-for="@Model.Employee.LastName" class="text-danger"></span>
+
     </div>
     <div class="form-group">
         <label class="control-label">Mobile Number *</label>
         <input required class="form-control" asp-for="@Model.EmployeeDetails.MobileNumber" />
-        <span class="test-danger"></span>
+        <span asp-validation-for="@Model.EmployeeDetails.MobileNumber" class="text-danger"></span>
+
     </div>
     <div class="form-group">
         <label class="control-label">Home Phone Number</label>
         <input class="form-control" asp-for="@Model.EmployeeDetails.HomePhoneNumber" />
-        <span class="test-danger"></span>
+        <span asp-validation-for="@Model.EmployeeDetails.HomePhoneNumber" class="text-danger"></span>
+
     </div>
     <div class="form-group">
         <label class="control-label">Address</label>
         <input class="form-control" asp-for="@Model.EmployeeDetails.Address" />
-        <span class="test-danger"></span>
+        <span asp-validation-for="@Model.EmployeeDetails.Address" class="text-danger"></span>
     </div>
 
     <div class="form-group">
@@ -34,7 +37,8 @@
         <select asp-items="@(new SelectList(Model.JobRoles, "JobRoleId", "JobRoleTitle", Model.Employee.JobRoleId))" asp-for="@Model.Employee.JobRoleId" class="form-control">
             <option value="0">Please select an option</option>
         </select>
-        <span class="test-danger"></span>
+        <span asp-validation-for="@Model.JobRoles" class="text-danger"></span>
+
     </div>
 
     <div class="card-footer pt-5">

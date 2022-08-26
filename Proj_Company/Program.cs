@@ -1,3 +1,4 @@
+using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 using Services.EntityValidators;
@@ -14,14 +15,11 @@ builder.Services.AddDbContext<Data.CompanyContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 
-builder.Services.AddControllersWithViews().AddFluentValidation(options =>
-{
-    options.RegisterValidatorsFromAssemblyContaining<EmployeeValidator>();
-    options.DisableDataAnnotationsValidation = true;
-});
+builder.Services.AddValidatorsFromAssemblyContaining<EmployeeValidator>(ServiceLifetime.Transient);
+builder.Services.AddValidatorsFromAssemblyContaining<JobRoleValidator>(ServiceLifetime.Transient);
+
 
 builder.Services.AddScoped<IEmployeeService, EmployeeService>();
-
 builder.Services.AddScoped<IJobRoleService, JobRoleService>();
 
 

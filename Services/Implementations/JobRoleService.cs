@@ -41,11 +41,11 @@ namespace Services.Implementations
             };
             return viewModel;
         }
-   /*     public async Task<JobRoleResults> GetInitialJobRoleResults()
-        {
-            JobRoleResults results = new();
-            return results;
-        }*/
+        /*     public async Task<JobRoleResults> GetInitialJobRoleResults()
+             {
+                 JobRoleResults results = new();
+                 return results;
+             }*/
         public async Task<JobRoleViewModel> BuildJobTitleViewModel()
         {
             var viewModel = new JobRoleViewModel
@@ -54,6 +54,7 @@ namespace Services.Implementations
             };
             return viewModel;
         }
+
         public async Task<JobRoleResults> GetInitialJobRoleResults()
         {
             JobRoleResults results = new JobRoleResults()
@@ -62,6 +63,7 @@ namespace Services.Implementations
             };
             return results;
         }
+      
         private async Task<List<JobRole>> SortJobRoleResults()
         {
             var JobRole =  _db.JobRoles.ToList();
@@ -70,6 +72,7 @@ namespace Services.Implementations
         public async Task<ValidationResult> ValidateCreateJobRoleViewModel(CreateJobRoleViewModel viewModel)
         {
             ValidationResult result = await _validator.ValidateAsync(viewModel);
+
             return result;
         }
     }

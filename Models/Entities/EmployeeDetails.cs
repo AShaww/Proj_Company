@@ -1,6 +1,7 @@
-﻿namespace Models.Entities
+﻿
+namespace Models.Entities
 {
-    public class EmployeeDetails
+    public class EmployeeDetails 
     {
         public EmployeeDetails() { }
 

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Models.Entities;
 using Models.ViewModels.JobRoleViewModels;
 using Proj_Company.Extensions;
+using Services.EntityValidators;
 using Services.Interfaces;
 
 namespace Proj_Company.Controllers
@@ -30,14 +31,20 @@ namespace Proj_Company.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(JobRole jobRoles)
         {
+            var validator = new JobRoleValidator();
+            var validationResult = validator.Validate(jobRoles);
 
             var viewModel = new CreateJobRoleViewModel { JobRoles = jobRoles };
-            var results = await _jobRoleService.ValidateCreateJobRoleViewModel(viewModel);
+            /*var results = await _jobRoleService.ValidateCreateJobRoleViewModel(viewModel);*/
 
-            if (!results.IsValid)
+            /*if(!validationResult.IsValid)
+            {
+                return BadRequest(validationResult.Errors.First().ErrorMessage);
+            }    */
+            if (!validationResult.IsValid)
             {
                 viewModel = await _jobRoleService.BuildCreateJobRoleViewModel();
-                results.AddToModelState(this.ModelState);
+                validationResult.AddToModelState(this.ModelState);
                 return View(viewModel);
             }
 

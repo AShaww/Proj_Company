@@ -5,6 +5,8 @@
     <div class="form-group">
         <label class="control-label">Job Role Title/ Name </label>
         <input class="form-control" asp-for="@Model.JobRoles.JobRoleTitle" />
+        <span asp-validation-for="@Model.JobRoles.JobRoleTitle" class="text-danger"></span>
+
     </div>
      <div class="card-footer pt-5">
         <div class="form-group">
