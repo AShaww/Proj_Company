@@ -20,7 +20,7 @@ namespace Data
             builder.ApplyConfiguration(new ContactDetailsConfiguration());
             builder.ApplyConfiguration(new EmployeeConfiguration());
             builder.ApplyConfiguration(new JobRoleConfiguration());
-
+            builder.ApplyConfiguration(new GenderConfiguration());
         }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<EmployeeDetails> EmployeeDetails { get; set; }

@@ -16,7 +16,7 @@
         {
             get
             {
-                return FirstName + LastName;
+                return FirstName + " " + LastName;
             }
         }
         public int GenderId { get; set; }
