@@ -16,7 +16,6 @@ namespace Services.Implementations
         public EmployeeService(CompanyContext db, IValidator<CreateEmployeeViewModel> validator) : base(db)
         {
             _validator = validator;
-
         }
 
         public async Task<ActionResult> AddEmployee(Employee person)
@@ -56,7 +55,10 @@ namespace Services.Implementations
             {
                 viewModel = new CreateEmployeeViewModel { Employee = new Employee() };
             }
+
             viewModel.JobRoles = await _db.JobRoles.ToListAsync();
+            viewModel.Genders = await _db.Gender.ToListAsync();
+
             return viewModel;
         }
 
@@ -85,6 +87,8 @@ namespace Services.Implementations
             var Employees =  _db.Employees.Include(a => a.EmployeeDetail).ToList();
 
             Employees = _db.Employees.Include(a => a.JobRole).ToList();
+            Employees = _db.Employees.Include(a => a.Gender).ToList();
+
             return Employees;
         }
         public async Task<EmployeeViewModel> BuildInitialEmployeeViewModel()

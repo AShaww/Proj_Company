@@ -12,5 +12,6 @@ namespace Models.ViewModels.EmployeeViewModels
         public Employee Employee { get; set; }
         public EmployeeDetails EmployeeDetails { get; set; }
         public List<JobRole> JobRoles { get; set; }
+        public List<Gender> Genders { get; set; }
     }
 }

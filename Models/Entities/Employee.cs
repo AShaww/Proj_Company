@@ -19,8 +19,10 @@
                 return FirstName + LastName;
             }
         }
+        public int GenderId { get; set; }
         public int JobRoleId { get; set; }
         public EmployeeDetails EmployeeDetail { get; set; }
         public JobRole JobRole { get; set; }
+        public Gender Gender { get; set; }
     }
 }

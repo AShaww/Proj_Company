@@ -25,6 +25,7 @@ namespace Data
         public DbSet<Employee> Employees { get; set; }
         public DbSet<EmployeeDetails> EmployeeDetails { get; set; }
         public DbSet<JobRole> JobRoles { get; set; }
-           
+        public DbSet<Gender> Gender { get; set; }
+
     }
 }

@@ -12,16 +12,11 @@ namespace Data.EntityConfigurations
             builder.HasOne(a => a.EmployeeDetail).WithOne(a => a.Employee)
                 .HasForeignKey<EmployeeDetails>(a => a.EmployeeDetailsId);
 
-            builder.HasOne(x => x.JobRole)
+            builder.HasOne(x => x.Gender)
                 .WithMany(x => x.Employees);
 
-            Seed(builder);
-        }
-        public void Seed(EntityTypeBuilder<Employee> builder)
-        {
-            /* builder.HasData(
-                *//* new Person(1, 1, "Amir", "Shaw")*//*
-                 );*/
+            builder.HasOne(x => x.JobRole)
+                .WithMany(x => x.Employees);
         }
     }
 }

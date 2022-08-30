@@ -9,6 +9,19 @@ namespace Data.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "Gender",
+                columns: table => new
+                {
+                    GenderId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    GenderName = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Gender", x => x.GenderId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "JobRoles",
                 columns: table => new
                 {
@@ -30,11 +43,18 @@ namespace Data.Migrations
                     EmployeeDetailsId = table.Column<int>(type: "int", nullable: false),
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    GenderId = table.Column<int>(type: "int", nullable: false),
                     JobRoleId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Employees", x => x.EmployeeId);
+                    table.ForeignKey(
+                        name: "FK_Employees_Gender_GenderId",
+                        column: x => x.GenderId,
+                        principalTable: "Gender",
+                        principalColumn: "GenderId",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Employees_JobRoles_JobRoleId",
                         column: x => x.JobRoleId,
@@ -49,7 +69,6 @@ namespace Data.Migrations
                 {
                     EmployeeDetailsId = table.Column<int>(type: "int", nullable: false),
                     MobileNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    HomePhoneNumber = table.Column<int>(type: "int", nullable: true),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
@@ -69,6 +88,11 @@ namespace Data.Migrations
                 values: new object[] { 1, "CEO" });
 
             migrationBuilder.CreateIndex(
+                name: "IX_Employees_GenderId",
+                table: "Employees",
+                column: "GenderId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Employees_JobRoleId",
                 table: "Employees",
                 column: "JobRoleId");
@@ -81,6 +105,9 @@ namespace Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "Employees");
+
+            migrationBuilder.DropTable(
+                name: "Gender");
 
             migrationBuilder.DropTable(
                 name: "JobRoles");

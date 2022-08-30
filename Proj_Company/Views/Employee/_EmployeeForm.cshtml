@@ -21,12 +21,6 @@
     </div>
 
     <div class="form-group">
-        <label class="control-label">Home Phone Number</label>
-        <input class="form-control" asp-for="@Model.EmployeeDetails.HomePhoneNumber">
-     @*   <span asp-validation-for="@Model.EmployeeDetails.HomePhoneNumber" class="text-danger"></span>*@
-    </div>
-
-    <div class="form-group">
         <label class="control-label">Address</label>
         <input class="form-control" asp-for="@Model.EmployeeDetails.Address" />
         @*<span asp-validation-for="@Model.EmployeeDetails.Address" class="text-danger"></span>*@
@@ -37,9 +31,13 @@
         <select asp-items="@(new SelectList(Model.JobRoles, "JobRoleId", "JobRoleTitle", Model.Employee.JobRoleId))" asp-for="@Model.Employee.JobRoleId" class="form-control">
             <option value="0">Please select an option</option>
         </select>
-
     </div>
-
+     <div class="form-group">
+        <label class="control-label">Gender</label>
+        <select asp-items="@(new SelectList(Model.Genders, "GenderId", "GenderName", Model.Employee.GenderId))" asp-for="@Model.Employee.GenderId" class="form-control">
+            <option value="0">Please select an Gender</option>
+        </select>
+    </div>
     <div class="card-footer pt-5">
         <div class="form-group">
             <input type="submit" value="Save" class="btn btn-primary" />

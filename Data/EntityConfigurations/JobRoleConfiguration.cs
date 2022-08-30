@@ -21,14 +21,6 @@ namespace Data.EntityConfigurations
         {
             builder.HasData(
                 new JobRole { JobRoleId = 1, JobRoleTitle = "CEO" }
-              /*  new JobRole { JobRoleId = 2, JobTitle = "CTO" },
-                new JobRole { JobRoleId = 3, JobTitle = "C3PO" },
-                new JobRole { JobRoleId = 4, JobTitle = "Manager" },
-                new JobRole { JobRoleId = 5, JobTitle = "Supervisor" },
-                new JobRole { JobRoleId = 6, JobTitle = "Contracted" },
-                new JobRole { JobRoleId = 7, JobTitle = "In House" },
-                new JobRole { JobRoleId = 8, JobTitle = "Associate" },
-                new JobRole { JobRoleId = 9, JobTitle = "Nobody" }*/
                 );
         }
     }

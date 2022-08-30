@@ -15,14 +15,6 @@ namespace Data.EntityConfigurations
         {
             builder.HasKey(x => x.EmployeeDetailsId);
             builder.HasOne(x => x.Employee).WithOne(x => x.EmployeeDetail);
-            Seed(builder);
-
-            
-        }
-
-        public void Seed(EntityTypeBuilder<EmployeeDetails> builder)
-        {
-           /* new Address(1, "31 something"); */
         }
     }
 }
